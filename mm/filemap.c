@@ -61,6 +61,24 @@
  */
 
 /*
+ * (file read routine) fs -> filemap
+ * page_ok:
+ *  copy_to_iter
+ * readpage:
+ *  a_ops -> readpage (read to page in kernel phys address map region)
+ * no_cached_page:
+ *  alloc_page
+ * 
+ * (file mmap) mmap -> fs -> filemap
+ * call:
+ *  filemap
+ * readpage:
+ *  a_ops -> readpage (read to page mapped to dest process)
+ * fault:
+ *  vm_ops
+ */
+
+/*
  * Lock ordering:
  *
  *  ->i_mmap_rwsem		(truncate_pagecache)
@@ -2300,6 +2318,9 @@ out:
 	return written ? written : error;
 }
 
+/**
+ * page cache temporary kmap and copy_to_user in finish
+ */
 /**
  * generic_file_read_iter - generic filesystem read routine
  * @iocb:	kernel I/O control block

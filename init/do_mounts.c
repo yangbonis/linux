@@ -593,6 +593,9 @@ out:
 	ksys_chroot(".");
 }
 
+/*
+ * call by init_mount_tree, rootfs -> mount / -> initramfs
+ */
 static bool is_tmpfs;
 static struct dentry *rootfs_mount(struct file_system_type *fs_type,
 	int flags, const char *dev_name, void *data)

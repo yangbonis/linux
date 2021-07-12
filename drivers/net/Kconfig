@@ -19,6 +19,10 @@ menuconfig NETDEVICES
 	  See also "The Linux Network Administrator's Guide" by Olaf Kirch and
 	  Terry Dawson. Available at <http://www.tldp.org/guides.html>.
 
+driver/net驱动对应数据链路层或者物理层的设备，netdev_start_xmit(net_device_ops->ndo_start_xmit)
+work_struct
+
+
 	  If unsure, say Y.
 
 # All the following symbols are dependent on NETDEVICES - do not repeat

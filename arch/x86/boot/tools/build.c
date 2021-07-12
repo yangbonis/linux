@@ -394,6 +394,8 @@ int main(int argc, char ** argv)
 
 	/* Patch the setup code with the appropriate size parameters */
 	buf[0x1f1] = setup_sectors-1;
+
+	/* 0x1f1 = 497, 0x1f4 = 500,  0x260 = 608, update setup size for EFI*/
 	put_unaligned_le32(sys_size, &buf[0x1f4]);
 
 	update_pecoff_text(setup_sectors * 512, i + (sys_size * 16));

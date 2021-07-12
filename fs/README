@@ -1,0 +1,28 @@
+文件的组织形式即hash
+hash1: i_ino -> recorder
+hash2: blocks: dir_file -> i_ino, name
+
+FS 1
+file -> inode
+
+引入fs/file fs/inode模块
+
+FS 2
+dir_file -> inode -> dentry -> dir_file -> .... -> dentry -> recorder
+INO_/ -> 2INO_usr/ -> 10INO_lib/ -> 155INO_libc.so -> 32225INO_recorder
+d_subdir_search(/ -> usr/ -> lib/ -> libc.so)
+
+dentry_hashtable:
+/usr/lib/libc.so 32225
+
+引入fs/namei fs/dcache fs/d_path模块
+
+FS 3
+希望能够在物理内存中cache文件
+引入iov_iter while(1){alloc, do}，在lib/iov_iter模块
+引入mm/filemap fs/mpage模块，分别对应上述alloc do
+
+FS 4
+希望文件系统能够存放在分区上
+引入buffer_head，修改page使其能够引用buffer_head而非物理页
+

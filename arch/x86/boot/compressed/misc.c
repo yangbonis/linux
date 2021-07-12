@@ -171,6 +171,11 @@ void __puthex(unsigned long value)
 }
 
 #if CONFIG_X86_NEED_RELOCS
+/*
+ * 内核符号重定位功能和linker不同之处在于，linker以code section为单位进行
+ * 重定位，而内核以image为单位进行重定位。所以linker需要处理所有重定位符号
+ * 内核只需处理绝对地址的符号。
+ */
 static void handle_relocations(void *output, unsigned long output_len,
 			       unsigned long virt_addr)
 {

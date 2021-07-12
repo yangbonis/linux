@@ -38,6 +38,7 @@ endif # HAS_IOMEM
 
 if VT
 	source "drivers/video/console/Kconfig"
+        tty -> video console -> drm kms
 endif
 
 if FB || SGI_NEWPORT_CONSOLE

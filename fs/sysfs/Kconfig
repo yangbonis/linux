@@ -20,5 +20,6 @@ config SYSFS
 	partition.  If sysfs is disabled you must specify the boot device on
 	the kernel boot command line via its major and minor numbers.  For
 	example, "root=03:01" for /dev/hda1.
+//需要明白为什么
 
 	Designers of embedded systems may wish to say N here to conserve space.

@@ -4,11 +4,11 @@ Virtual memory map with 4 level page tables:
 0000000000000000 - 00007fffffffffff (=47 bits) user space, different per mm
 hole caused by [47:63] sign extension
 ffff800000000000 - ffff87ffffffffff (=43 bits) guard hole, reserved for hypervisor
-ffff880000000000 - ffffc7ffffffffff (=64 TB) direct mapping of all phys. memory
+ffff880000000000 - ffffc7ffffffffff (=64 TB) direct mapping of all phys. memory 46bit
 ffffc80000000000 - ffffc8ffffffffff (=40 bits) hole
 ffffc90000000000 - ffffe8ffffffffff (=45 bits) vmalloc/ioremap space
 ffffe90000000000 - ffffe9ffffffffff (=40 bits) hole
-ffffea0000000000 - ffffeaffffffffff (=40 bits) virtual memory map (1TB)
+ffffea0000000000 - ffffeaffffffffff (=40 bits) virtual memory map (1TB)(SPARSEMEM) (46bit-12bit)(pfn) + 6bit(sizeof(struct page))
 ... unused hole ...
 ffffec0000000000 - fffffbffffffffff (=44 bits) kasan shadow memory (16TB)
 ... unused hole ...

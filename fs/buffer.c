@@ -18,6 +18,10 @@
  * async buffer flushing, 1999 Andrea Arcangeli <andrea@suse.de>
  */
 
+/*
+ * buffer vs bufferhead
+ */
+
 #include <linux/kernel.h>
 #include <linux/sched/signal.h>
 #include <linux/syscalls.h>

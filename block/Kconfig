@@ -21,6 +21,9 @@ menuconfig BLOCK
 	 Also, SCSI character devices and USB storage will be disabled since
 	 they make use of various block layer definitions and facilities.
 
+submit_bio -> block -> scsi or driver/block -> libata(translate scsi to ata defined by INCITS T10) or ... -> ahci or ...
+bus -> subbus  -> controller -> ata command -> disk
+
 	 Say Y here unless you know you really don't want to mount disks and
 	 suchlike.
 

@@ -424,6 +424,11 @@ static int sock_map_fd(struct socket *sock, int flags)
 	return PTR_ERR(newfile);
 }
 
+/*
+ * private_data连接vfs和socket, 同样的还有vfs和seq_file
+ * sockfd_lookup的注释中可以看出private_data像slot 
+ * 类比其它的代码, 可见private, *_data等void *常用来表示slot
+ */
 struct socket *sock_from_file(struct file *file, int *err)
 {
 	if (file->f_op == &socket_file_ops)

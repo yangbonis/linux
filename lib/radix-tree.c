@@ -49,6 +49,12 @@ static unsigned long height_to_maxnodes[RADIX_TREE_MAX_PATH + 1] __read_mostly;
 static struct kmem_cache *radix_tree_node_cachep;
 
 /*
+radix tree用slots来组织树结构，slots叶子所指向的数据需要4字节对齐，因为slots末两位被用来表示内部节点，用其余位只能表示对齐的地址。
+radix tree用来表示key-value的映射关系，遍历radix中所有key相当于遍历所有slot，可以把相临的slots记作chunk，将遍历的过程分为next_chunk和next_slot。
+radix tree将key中的几位来表示slot数组的索引，用shift和offset来记录slot数组所采用的索引。
+当物理页作为filemap的radix tree的value时，radix tree的作用为记录file以页对齐到page的映射，page结构体存在index、mapping成员，可以用来查找对应的file。
+*/
+/*
  * The radix tree is variable-height, so an insert operation not only has
  * to build the branch to its corresponding item, it also has to build the
  * branch to existing items if the size has to be increased (by

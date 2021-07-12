@@ -38,6 +38,9 @@ config VT
 	  memory; the only way to log into such a system is then via a serial
 	  or network connection.
 
+          Local input or output depend on /dev/tty, graphical output can bypass
+          tty.
+
 	  If unsure, say Y, or else you won't be able to do much with your new
 	  shiny Linux system :-)
 

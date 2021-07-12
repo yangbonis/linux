@@ -2553,6 +2553,10 @@ static void remove_vma_list(struct mm_struct *mm, struct vm_area_struct *vma)
 	validate_mm(mm);
 }
 
+
+/*
+ * filemap -> map -> vma.vm_ops -> pgtable & lru
+ */
 /*
  * Get rid of page table information in the indicated region.
  *

@@ -2728,6 +2728,11 @@ static void dynamic_debug_remove(struct module *mod, struct _ddebug *debug)
 		ddebug_remove_module(mod->name);
 }
 
+/*
+ * weak 暗示了arch模块可提供override,
+ * module使用的vmalloc的x86版可以在"module mapping space"(Documentation/.../mm.txt)
+ * 区域分配(ffff a000 0000, ffff | 10(pud[510])/10 0000 000(pmd[256])/0 0000 | 0000)
+ */
 void * __weak module_alloc(unsigned long size)
 {
 	return vmalloc_exec(size);

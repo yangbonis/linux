@@ -657,6 +657,9 @@ static ssize_t write_null(struct file *file, const char __user *buf,
 	return count;
 }
 
+/*
+ * if= of=/dev/null cache有效
+ */
 static ssize_t read_iter_null(struct kiocb *iocb, struct iov_iter *to)
 {
 	return 0;

@@ -7,6 +7,10 @@
  * Based on code from fs/super.c, copyright Linus Torvalds and others.
  * Heavily rewritten.
  */
+/*
+ * 2.4.10.4 引入, 引入时将super.c中的mount移入, 命名的原因可能是用名字
+ * 空间来代表在不同文件系统中的同路径文件处于不同的名字空间
+ */
 
 #include <linux/syscalls.h>
 #include <linux/export.h>

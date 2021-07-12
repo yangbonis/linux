@@ -19,6 +19,9 @@ menuconfig NET
 	  contained in the package net-tools, the location and version number
 	  of which are given in <file:Documentation/Changes>.
 
+ip: *_output -> neigh_output -> dev_queue_xmit; 可见neighbour连接了网络层和
+数据链路层。
+
 	  For a general introduction to Linux networking, it is highly
 	  recommended to read the NET-HOWTO, available from
 	  <http://www.tldp.org/docs.html#howto>.

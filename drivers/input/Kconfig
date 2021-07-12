@@ -16,6 +16,8 @@ config INPUT
 
 	  Say N here if you have a headless (no monitor, no keyboard) system.
 
+libinput -> /dev/input/... -> acpi button, mouse, keyboard, pnp device
+
 	  More information is available: <file:Documentation/input/input.rst>
 
 	  If unsure, say Y.

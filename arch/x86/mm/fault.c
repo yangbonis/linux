@@ -325,6 +325,9 @@ static noinline int vmalloc_fault(unsigned long address)
 	 * Do _not_ use "current" here. We might be inside
 	 * an interrupt in the middle of a task switch..
 	 */
+	/*
+	 * 中断虽然共用内核栈，但是也不使用current
+	 */
 	pgd_paddr = read_cr3_pa();
 	pmd_k = vmalloc_sync_one(__va(pgd_paddr), address);
 	if (!pmd_k)
@@ -1203,6 +1206,10 @@ static inline bool smap_violation(int error_code, struct pt_regs *regs)
 }
 
 /*
+ * 只处理virtual address中的非直接映射区，意味着直接映射区的页表在init的时候
+ * 已经全部填充。见asm/pgtable_64.h
+ */
+/*
  * This routine handles page faults.  It determines the address,
  * and the problem, and then passes it off to one of the appropriate
  * routines.
@@ -1238,6 +1245,10 @@ __do_page_fault(struct pt_regs *regs, unsigned long error_code,
 	 * This verifies that the fault happens in kernel space
 	 * (error_code & 4) == 0, and that the fault was not a
 	 * protection error (error_code & 9) == 0.
+	 */
+	/*
+	 * 先运行的进程访问后申请的vmalloc空间，需要同步，不一致的
+	 * 地方仅发生在pgd内的新增项。
 	 */
 	if (unlikely(fault_in_kernel_space(address))) {
 		if (!(error_code & (X86_PF_RSVD | X86_PF_USER | X86_PF_PROT))) {

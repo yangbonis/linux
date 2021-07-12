@@ -1,0 +1,11 @@
+pgd: page global directory
+gfp: get free page
+fpg: file get page?
+head: 鱼骨一样的代码结构的头
+piggy:
+nr_*: total number of XXX
+qstr: quick string
+namei: char(user interface) -> struct filename(vfs names_cachep interface) -> struct file(vfs file interface)
+       lookup_fast -> (dentry interface)
+       lookup_fast -> (dentry&inode interface)
+namespace: 在fs中，namespace指以/分隔的路径表示的挂载目录结构的整体

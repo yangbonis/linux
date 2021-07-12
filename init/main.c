@@ -1149,6 +1149,17 @@ static noinline void __init kernel_init_freeable(void)
 
 	(void) ksys_dup(0);
 	(void) ksys_dup(0);
+/*
+ * open
+ * PID: 30194  TASK: ffff9fa1ddca5d00  CPU: 13  COMMAND: "cat"
+ * ROOT: /    CWD: /root
+ *  FD       FILE            DENTRY           INODE       TYPE PATH
+ *   0 ffff9fa39b13f300 ffff9fa44e00f440 ffff9fa44c2ef538 CHR  /dev/tty3
+ *   1 ffff9fa39b13f300 ffff9fa44e00f440 ffff9fa44c2ef538 CHR  /dev/tty3
+ *   2 ffff9fa39b13f300 ffff9fa44e00f440 ffff9fa44c2ef538 CHR  /dev/tty3
+ *   3 ffff9fa35c100600 ffff9fa44e00f440 ffff9fa44c2ef538 CHR  /dev/tty3
+ */
+
 	/*
 	 * check if there is an early userspace init.  If yes, let it do all
 	 * the work

@@ -2138,6 +2138,7 @@ config RANDOMIZE_BASE
 	  If unsure, say Y.
 
 # Relocation on x86 needs some additional build support
+# Todo
 config X86_NEED_RELOCS
 	def_bool y
 	depends on RANDOMIZE_BASE || (X86_32 && RELOCATABLE)
